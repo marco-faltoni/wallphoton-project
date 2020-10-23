@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Abel", sans-serif;
+    color: rgb(51, 51, 51);
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    justify-content: center;
+    align-items: center;
+    h2 {
+        padding: 2rem;
+        #logo {
+            text-decoration: none;
+            color: rgb(51, 51, 51);;
+        }
+    }
+    .search-form {
+        padding: 2rem;
+        display: flex;
+        input {
+            font-size: 2rem;
+            padding: 0.5rem;
+            width: 100%;
+            border: none;
+            border: 2px solid rgb(78, 78, 226);
+        }
+        button {
+            border: none;
+            font-size: 1rem;
+            padding: 0.5rem;
+            background: rgb(78, 78, 226);
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
