@@ -1,15 +1,29 @@
+// codice key per l'autenticazione pexels
 const auth = "563492ad6f917000010000019827492feb944b07bd6ed02f85890293";
+// contenitore galleria
 const gallery = document.querySelector('.gallery');
+// l'input
 const searchInput = document.querySelector('.search-input');
+// il form
 const form = document.querySelector('.search-form');
+// il bottone more
+const more = document.querySelector('.more');
+
 let searchValue;
 let PexelLink;
+let page = 1;
+let CurrentSearch;
 
+// aggiungo un evento in cattura dell'input e gli passo una funzione che recupera il valore dell'input
 searchInput.addEventListener('input', updateInput);
+
 form.addEventListener('submit', (e)=> {
     e.preventDefault();
+    CurrentSearch = searchValue;
     SearchPhotos(searchValue);
-})
+});
+
+more.addEventListener("click", loadMore);
 
 function updateInput(e){
     searchValue = event.target.value;
@@ -42,7 +56,7 @@ function genPictures(data){
         galleryImg.innerHTML = ` 
         <div class="gallery-info">
         <p>${photo.photographer}</p>
-        <a href="${photo.src.original}">Download</a>
+        <a href="${photo.src.original}" target="_blank" rel="noreferrer">Download</a>
         </div> 
         <img src="${photo.src.large}" alt=""> `;
         gallery.appendChild(galleryImg);
@@ -61,6 +75,18 @@ async function SearchPhotos(value){
     PexelLink = `https://api.pexels.com/v1/search?query=${value}+query&per_page=15&page=1`;
     const data = await ApiData(PexelLink);
     genPictures(data);
+}
+
+async function loadMore(){
+    page++;
+    if (CurrentSearch) {
+        fetchLink = `https://api.pexels.com/v1/search?query=${CurrentSearch}+query&per_page=15&page=${page}`;
+    } else {
+        fetchLink = `https://api.pexels.com/v1/curated?per_page=15&page=${page}`;
+    }
+    const data = await ApiData(fetchLink);
+    genPictures(data);
+
 }
 
 function clear(){
