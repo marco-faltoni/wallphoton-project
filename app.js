@@ -39,7 +39,12 @@ function genPictures(data){
         
         const galleryImg = document.createElement('div');
         galleryImg.classList.add('gallery-img');
-        galleryImg.innerHTML = `<img src="${photo.src.large}" alt=""> <p>${photo.photographer}</p> `;
+        galleryImg.innerHTML = ` 
+        <div class="gallery-info">
+        <p>${photo.photographer}</p>
+        <a href="${photo.src.original}">Download</a>
+        </div> 
+        <img src="${photo.src.large}" alt=""> `;
         gallery.appendChild(galleryImg);
     });
 }
