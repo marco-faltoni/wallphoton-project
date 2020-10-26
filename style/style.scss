@@ -3,9 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: "Abel", sans-serif;
-    color: rgb(51, 51, 51);
+    background: radial-gradient(circle, rgba(60,75,87,1) 54%, rgba(43,42,51,1) 100%);
 }
 
 header {
@@ -15,24 +16,35 @@ header {
     justify-content: center;
     align-items: center;
     h2 {
-        padding: 2rem;
+        padding: 0 2rem;
+        font-size: 2.5rem;
         #logo {
             text-decoration: none;
-            color: rgb(51, 51, 51);;
+            background: linear-gradient(90deg, #d398ff, #4e4ee2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            -webkit-text-decoration-color: #8e87f3!important;
+            text-decoration-color: #8e87f3!important;
         }
     }
     .search-form {
         padding: 2rem;
         display: flex;
         input {
-            font-size: 2rem;
-            padding: 0.5rem;
+            font-size: 1rem;
+            padding: 1rem 2rem;
             width: 100%;
             border: none;
             border: 2px solid rgb(78, 78, 226);
+            border-top-left-radius: 7px;
+            border-bottom-left-radius: 7px;
         }
         button {
             border: none;
+            border-top-right-radius: 7px;
+            border-bottom-right-radius: 7px;
             font-size: 1rem;
             padding: 0.5rem;
             background: rgb(78, 78, 226);
@@ -41,7 +53,7 @@ header {
         }
     }
 }
-.gallery {
+.gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     padding: 2rem 0rem;
@@ -50,26 +62,152 @@ header {
     row-gap: 5rem;
     column-gap: 3rem;
     .gallery-img {
+        width: 100%;
         .gallery-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0.5rem 0rem;
-            color: gray;
+            font-size: 1rem;
+            color: whitesmoke;
             a {
-                color: gray;
+                color: whitesmoke;
+                font-style: italic;
+                background: linear-gradient(90deg, #d398ff, #4e4ee2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-box-decoration-break: clone;
+                box-decoration-break: clone;
+                -webkit-text-decoration-color: #8e87f3!important;
+                text-decoration-color: #8e87f3!important;
             }
         }
-        img {
-            width: 100%;
+        .img-static{
+            overflow: hidden;
             height: 550px;
-            object-fit: cover;
+            border-radius: 3px;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: all 0.3s ease-out;
+                cursor: pointer;
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        } 
+    }
+}
+
+.modal {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-out;
+    &.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+    .full-img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.2);
+        transition: all 0.25s ease-out;
+        &.open {
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+    }
+
+    p {
+        font-size: 2rem;
+        font-weight: bold;
+        position: absolute;
+        bottom: 3%;
+        left: 50%;
+        transform: translate(-50%, -3%);
+        a {
+            color: whitesmoke;
+            // background: linear-gradient(90deg,#ff8a00,#e52e71);
+            background: linear-gradient(90deg, #d398ff, #4e4ee2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            -webkit-text-decoration-color: #8e87f3!important;
+            // text-decoration-color: #ff8a00!important;
+            text-decoration-color: #8e87f3!important;
         }
     }
 }
 
+.modal-2 {
+    background: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-out;
+}
+
+.loader {
+    position: fixed;
+    top: calc(35%);
+    left: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    perspective: 800px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-out;
+    &.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.inner {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;  
+}
+
+.inner.one {
+    left: 0%;
+    top: 0%;
+    animation: rotate-one 1s linear infinite;
+    border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+    right: 0%;
+    top: 0%;
+    animation: rotate-two 1s linear infinite;
+    border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+    right: 0%;
+    bottom: 0%;
+    animation: rotate-three 1s linear infinite;
+    border-top: 3px solid #EFEFFA;
+}
+
 .nav-button {
     min-height: 30vh;
+    margin-top: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,3 +221,29 @@ header {
     }
 }
 
+@keyframes rotate-one {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes rotate-two {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+    
+@keyframes rotate-three {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}

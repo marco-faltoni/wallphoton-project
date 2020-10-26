@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WallPhoton Project</title>
+    <title>A Wall of Photos Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ccab3f3465.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style/style.css" />
@@ -11,17 +11,33 @@
 <body>
     <header>
         <h2>
-            <a id="logo" href="./index.html">WallPhoton</a>
+            <a id="logo" href="./index.html">A Wall of Photos</a>
         </h2>
         <form class="search-form">
-            <input type="text" name="search" class="search-input">
+            <input type="text" placeholder="Search Something..." name="search" class="search-input">
             <button type="submit" class="submit-btn">Search</button>
         </form>
     </header>
 
     <main>  
-        <div class="gallery"></div>
+        <div class="gallery-container"></div>
     </main>
+    
+    <div class="modal">
+        <img src="" alt="" class="full-img">
+        <p class="caption"></p>
+    </div>
+
+    <div class="modal-2">
+        <img src="" alt="" class="full-img">
+        <p class="caption"></p>
+    </div>
+
+    <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+    </div>
 
     <div class="nav-button">
         <button class="more">More</button>
