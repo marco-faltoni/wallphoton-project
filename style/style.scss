@@ -121,7 +121,10 @@ header {
         transform: translate(-50%, -50%) scale(0.2);
         transition: all 0.25s ease-out;
         &.open {
-            transform: translate(-50%, -50%) scale(0.4);
+            transform: translate(-50%, -50%) scale(0.6);
+            @media screen and (max-width: 600px) {
+                transform: translate(-50%, -50%) scale(0.4);
+            }
         }
     }
 

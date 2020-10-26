@@ -167,8 +167,15 @@ header .search-form button {
 }
 
 .modal .full-img.open {
-  -webkit-transform: translate(-50%, -50%) scale(0.4);
-          transform: translate(-50%, -50%) scale(0.4);
+  -webkit-transform: translate(-50%, -50%) scale(0.6);
+          transform: translate(-50%, -50%) scale(0.6);
+}
+
+@media screen and (max-width: 600px) {
+  .modal .full-img.open {
+    -webkit-transform: translate(-50%, -50%) scale(0.4);
+            transform: translate(-50%, -50%) scale(0.4);
+  }
 }
 
 .modal p {
