@@ -1,4 +1,4 @@
-<h4 align="center">Online Beatmaker</h4>
+<h4 align="center">Pexels-Like Project</h4>
 
 <p align="center"><img  width="70%" src="https://github.com/marco-faltoni/wallphoton-project/blob/main/Screen.jpg"></p>
 
